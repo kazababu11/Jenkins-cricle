@@ -1,0 +1,15 @@
+pipeline{
+     agent any
+     }
+  stages{
+      stage("gitcheckout"){
+          step{
+              git credentialsId: 'd581743b-937d-4ff0-8377-96639eb8663f', url: 'https://github.com/kazababu11/ops.git'
+           }
+       }
+       stage("Mavenbild"){
+           step{
+              sh "mvn clean package"
+              sh "mv target/.war target/myweb.war
+           }
+       }
